@@ -4,8 +4,8 @@
 # 1. Cargar paquetes ------------------------------------------------------
 pacman::p_load(tidyverse, sjPlot, sjmisc)
 # 2. Cargar datos ---------------------------------------------------------
-ene2021 <- haven::read_dta("https://www.ine.cl/docs/default-source/ocupacion-y-desocupacion/bbdd/2021/stata/ene-2021-03-fma.dta?sfvrsn=d2acd9d6_11&amp;download=true")
-ene2019 <- haven::read_dta("https://www.ine.cl/docs/default-source/ocupacion-y-desocupacion/bbdd/2019/formato-stata/ene-2019-03.dta?sfvrsn=936ca6e9_8&amp;download=true")
+ene2021 <- haven::read_dta("https://www.ine.cl/docs/default-source/ocupacion-y-desocupacion/bbdd/2021/stata/ene-2021-11-ond.dta?sfvrsn=fe87a57d_8&download=true")              
+ene2019 <- haven::read_dta("https://www.ine.cl/docs/default-source/ocupacion-y-desocupacion/bbdd/2019/stata/ene-2019-11-ond.dta?sfvrsn=3d70644f_18&download=true")
 # 3. Explorar -------------------------------------------------------------
 find_var(ene2021, "principal")
 find_var(ene2019, "actividad")
@@ -176,7 +176,7 @@ ene2019 %>%
   mutate_at(vars(starts_with("c2")), funs(car::recode(., recodes = c("999=NA")))) %>%
   rowwise() %>% 
   mutate(indice_c2_1 = sum(c2_1_1, c2_1_2, c2_1_3, na.rm = T)) %>%
-  select(contains("c2_1")) #para comprobar como quedí
+  select(contains("c2_1")) #para comprobar como quedó
 
 ## Guardar
 ene2019 <- ene2019 %>%
